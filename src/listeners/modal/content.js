@@ -44,8 +44,6 @@ async function onContentModal(interaction, client) {
 }
 
 
-
-
 async function sendError(interaction, message) {
     await interaction.reply({ embeds: [new EmbedBuilder()
             .setColor(0xcb380c)
@@ -53,8 +51,6 @@ async function sendError(interaction, message) {
             .setDescription(message)
             .setTimestamp()], ephemeral: true });
 }
-
-
 
 
 async function sendSuccess(interaction, age, twitch, ingame, client) {
@@ -66,7 +62,7 @@ async function sendSuccess(interaction, age, twitch, ingame, client) {
         image = `https://minotar.net/helm/${ingame}`;
     }
     const ticketButton = new ButtonBuilder()
-        .setCustomId('content_ticket')
+        .setCustomId('content_ticket_open_user')
         .setLabel('Open ticket')
         .setStyle(ButtonStyle.Primary);
 
@@ -100,10 +96,31 @@ function sendEmbed(channel, interaction, age, twitch, ingame, id, client, intera
         .addFields({ name: 'Minecraft name', value: ingame, inline: true },
             { name: 'Age', value: age.toString(), inline: true },
             { name: 'Social media', value: twitch, inline: true },
-            { name: `ID \`#${id}\``, value: ` `, inline: false },)
+            { name: `ID \`#${id}\``, value: ` `, inline: false },
+            { name: ` `, value: `<@&1117885857760817162>`, inline: false },)
         .setTimestamp()
 
-    channel.send({ embeds: [embed]});
+    const decline = new ButtonBuilder()
+        .setCustomId('decline_content_request')
+        .setLabel('Decline')
+        .setStyle(ButtonStyle.Danger);
+    const accept_content = new ButtonBuilder()
+        .setCustomId('accept_content')
+        .setLabel('Accept Content')
+        .setStyle(ButtonStyle.Success);
+    const accept_content_plus = new ButtonBuilder()
+        .setCustomId('accept_content_plus')
+        .setLabel('Accept Content+')
+        .setStyle(ButtonStyle.Success);
+    const open_ticket = new ButtonBuilder()
+        .setCustomId('content_ticket_open_staff')
+        .setLabel('Open ticket')
+        .setStyle(ButtonStyle.Primary);
+
+    const row = new ActionRowBuilder()
+        .addComponents(decline,accept_content, accept_content_plus, open_ticket);
+
+    channel.send({ components: [row],  embeds: [embed]});
 }
 
 module.exports = {
