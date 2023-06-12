@@ -1,3 +1,3 @@
-# NextApply
+# NextFight Application Bot
 
-![image](https://media.discordapp.net/attachments/1052241511795937381/1117774592182849636/image.png?width=973&height=378)
+![image](https://cdn.discordapp.com/attachments/1052241511795937381/1117774875977863178/image.png)
