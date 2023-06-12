@@ -1,9 +1,10 @@
 const { EmbedBuilder, Client, Events, ModalBuilder, TextInputBuilder, TextInputStyle, GatewayIntentBits, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder } = require('discord.js');
 const config = require('../config.json');
 
-
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
+//Modals
+const { showContentMenu } = require('./modals/contentModal');
 
 client.once(Events.ClientReady, c => {
     console.log(`Logged in as ${c.user.tag}`);
@@ -71,39 +72,6 @@ client.on(Events.InteractionCreate, interaction => {
         }
     }
 });
-
-async function showContentMenu(interaction) {
-    const modal = new ModalBuilder()
-        .setCustomId('content_modal')
-        .setTitle('Content');
-
-    const age = new TextInputBuilder()
-        .setCustomId('age')
-        .setMinLength(2)
-        .setPlaceholder("13+")
-        .setMaxLength(3)
-        .setLabel("How old are you?")
-        .setRequired(true)
-        .setStyle(TextInputStyle.Short);
-
-    const link = new TextInputBuilder()
-        .setCustomId('twitch')
-        .setLabel("Twitch, TikTok or YouTube link")
-        .setRequired(true)
-        .setStyle(TextInputStyle.Short);
-
-    const ingame = new TextInputBuilder()
-        .setCustomId('ingame')
-        .setLabel("Minecraft name")
-        .setMaxLength(16)
-        .setMinLength(3)
-        .setRequired(false)
-        .setStyle(TextInputStyle.Short);
-
-    modal.addComponents(new ActionRowBuilder().addComponents(age), new ActionRowBuilder().addComponents(link), new ActionRowBuilder().addComponents(ingame));
-
-    await interaction.showModal(modal);
-}
 
 async function showDeveloperMenu(interaction) {
     const modal = new ModalBuilder()
