@@ -23,20 +23,20 @@ async function onContentModal(interaction, client) {
         return;
     }
     if(age < 13) {
-        await sendError(interaction, "You must be 13+ years old!");
+        await sendError(interaction, "You must be at least 13 years old!");
         return;
     }
 
     if (ingame) {
         try {
             const apiResponse = await axios.get(`https://api.mojang.com/users/profiles/minecraft/${ingame}`);
-            await sendSuccess(interaction, age, twitch, ingame, client);
+            await sendSuccess(interaction, age, twitch, client, ingame);
         } catch (error) {
-            await sendSuccess(interaction, age, twitch, client);
-            //await sendError(interaction, `The account **${ingame}** does not exist!`);
+            //await sendSuccess(interaction, age, twitch, client);
+            await sendError(interaction, `The account **${ingame}** does not exist!`);
         }
     } else {
-        await sendSuccess(interaction);
+        await sendSuccess(interaction, age, twitch, client);
     }
 
     //sendSuccess(interaction);
@@ -53,13 +53,13 @@ async function sendError(interaction, message) {
 }
 
 
-async function sendSuccess(interaction, age, twitch, ingame, client) {
+async function sendSuccess(interaction, age, twitch, client, ingame) {
     const interactionUser = await interaction.guild.members.fetch(interaction.user.id)
     let name = interactionUser.displayName;
-    let image = "https://nothinglol";
+    let image = "https://media.discordapp.net/attachments/1052241511795937381/1099990211619979354/Neues_Projekt_39.png?width=670&height=670";
     if(ingame) {
         name = ingame;
-        image = `https://minotar.net/helm/${ingame}`;
+        image = `https://minotar.net/helm/${ingame}.png`;
     }
     const ticketButton = new ButtonBuilder()
         .setCustomId('content_ticket_open_user')
@@ -71,14 +71,26 @@ async function sendSuccess(interaction, age, twitch, ingame, client) {
 
     const id = createID(8, true);
 
-    await interaction.reply({ components: [row], embeds: [new EmbedBuilder()
-            .setColor(0x7ACB0C)
-            .setTitle('Success!')
-            .setThumbnail('https://media.discordapp.net/attachments/1052241511795937381/1117568280278876210/ezgif-3-f241c47409.gif?width=591&height=456')
-            .setDescription('Your application was successfully sent!\nWe will review it as soon as possible.')
-            .addFields({ name: ` `, value: `**TICKET ID** #${id}`, inline: false },)
-            .setFooter({ text: name, iconURL: image})
-            .setTimestamp()], ephemeral: true });
+    try {
+        await interaction.reply({ components: [row], embeds: [new EmbedBuilder()
+                .setColor(0x7ACB0C)
+                .setTitle('Success!')
+                .setThumbnail('https://media.discordapp.net/attachments/1052241511795937381/1117568280278876210/ezgif-3-f241c47409.gif?width=591&height=456')
+                .setDescription('Your application was successfully sent!\nWe will review it as soon as possible.')
+                .addFields({ name: ` `, value: `**APPLICATION ID** #${id}`, inline: false },)
+                .setFooter({ text: name, iconURL: image})
+                .setTimestamp()], ephemeral: true });
+    } catch (error) {
+        await interaction.reply({ components: [row], embeds: [new EmbedBuilder()
+                .setColor(0x7ACB0C)
+                .setTitle('Success!')
+                .setThumbnail('https://media.discordapp.net/attachments/1052241511795937381/1117568280278876210/ezgif-3-f241c47409.gif?width=591&height=456')
+                .setDescription('Your application was successfully sent!\nWe will review it as soon as possible.')
+                .addFields({ name: ` `, value: `**APPLICATION ID** #${id}`, inline: false },)
+                .setTimestamp()
+                .setFooter({ text: interactionUser.displayName })
+            ], ephemeral: true });
+    }
 
     sendApplicationToChannel(interaction, age, twitch, ingame, id, client, interactionUser);
 }
@@ -88,17 +100,27 @@ function sendApplicationToChannel(interaction, age, twitch, ingame, id, client, 
 }
 
 function sendEmbed(channel, interaction, age, twitch, ingame, id, client, interactionUser) {
+
+
+    let name = ingame;
+    let image = `https://mineskin.eu/helm/${ingame}`;
+    if(!ingame) {
+        name = "_No name found!_"
+        image = "https://media.discordapp.net/attachments/1052241511795937381/1117897652542119936/Neues_Projekt_91_1.png?width=625&height=625";
+    }
+
     const embed = new EmbedBuilder()
         .setColor(0xEB8922)
         .setTitle(`Content Application`)
-        .setThumbnail(`https://mineskin.eu/helm/${ingame}`)
+        .setThumbnail(image)
         .setDescription(`Created by <@${interactionUser.id}>`)
-        .addFields({ name: 'Minecraft name', value: ingame, inline: true },
+        .addFields({ name: 'Minecraft name', value: name, inline: true },
             { name: 'Age', value: age.toString(), inline: true },
             { name: 'Social media', value: twitch, inline: true },
             { name: `ID \`#${id}\``, value: ` `, inline: false },
             { name: ` `, value: `<@&1117885857760817162>`, inline: false },)
         .setTimestamp()
+
 
     const decline = new ButtonBuilder()
         .setCustomId('decline_content_request')

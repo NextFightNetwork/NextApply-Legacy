@@ -8,7 +8,6 @@ async function showContentModal(interaction) {
     const age = new TextInputBuilder()
         .setCustomId('age')
         .setMinLength(2)
-        .setPlaceholder("13+")
         .setMaxLength(3)
         .setLabel("How old are you?")
         .setRequired(true)
