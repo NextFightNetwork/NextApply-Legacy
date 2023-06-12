@@ -1,6 +1,6 @@
 const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
 
-async function showContentMenu(interaction) {
+async function showContentModal(interaction) {
     const modal = new ModalBuilder()
         .setCustomId('content_modal')
         .setTitle('Content');
@@ -16,7 +16,7 @@ async function showContentMenu(interaction) {
 
     const link = new TextInputBuilder()
         .setCustomId('twitch')
-        .setLabel("Twitch, TikTok or YouTube link")
+        .setLabel("Twitch, YouTube or other link")
         .setRequired(true)
         .setStyle(TextInputStyle.Short);
 
@@ -34,5 +34,5 @@ async function showContentMenu(interaction) {
 }
 
 module.exports = {
-    showContentMenu
+    showContentModal
 };
