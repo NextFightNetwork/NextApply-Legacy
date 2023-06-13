@@ -45,7 +45,7 @@ async function sendError(interaction, message) {
 
 
 async function sendSuccess(interaction, age, twitch, client, ingame) {
-    const interactionUser = await interaction.guild.members.fetch(interaction.user.id)
+    const interactionUser = await interaction.guild.members.fetch(interaction.user.id);
     let name = interactionUser.displayName;
     let image = "https://media.discordapp.net/attachments/1052241511795937381/1099990211619979354/Neues_Projekt_39.png?width=670&height=670";
     if(ingame) {
@@ -100,14 +100,13 @@ function sendEmbed(channel, interaction, age, twitch, ingame, id, client, intera
 
     const embed = new EmbedBuilder()
         .setColor(0xEB8922)
-        .setTitle(`Content Application`)
+        .setTitle(interactionUser.id+"")
         .setThumbnail(image)
         .setDescription(`Created by <@${interactionUser.id}>`)
         .addFields({ name: 'Minecraft name', value: name, inline: true },
             { name: 'Age', value: age.toString(), inline: true },
             { name: 'Social media', value: twitch, inline: true },
-            { name: `ID \`#${id}\``, value: ` `, inline: false },
-            { name: ` `, value: `<@&1117885857760817162>`, inline: false },)
+            { name: `ID \`#${id}\``, value: ` `, inline: false })
         .setTimestamp()
 
 
@@ -131,6 +130,7 @@ function sendEmbed(channel, interaction, age, twitch, ingame, id, client, intera
     const row = new ActionRowBuilder()
         .addComponents(decline,accept_content, accept_content_plus, open_ticket);
 
+    channel.send("<@&1117885857760817162>");
     channel.send({ components: [row],  embeds: [embed]});
 }
 
