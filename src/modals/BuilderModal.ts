@@ -1,4 +1,4 @@
-const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
+import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } from 'discord.js';
 
 async function showBuilderModal(interaction) {
     const modal = new ModalBuilder()
@@ -36,11 +36,14 @@ async function showBuilderModal(interaction) {
         .setPlaceholder("Terrain, houses, trees...")
         .setStyle(TextInputStyle.Paragraph);
 
-    modal.addComponents(new ActionRowBuilder().addComponents(age), new ActionRowBuilder().addComponents(tools), new ActionRowBuilder().addComponents(ingame), new ActionRowBuilder().addComponents(best));
+    modal.addComponents(
+        new ActionRowBuilder<TextInputBuilder>().addComponents(age),
+        new ActionRowBuilder<TextInputBuilder>().addComponents(tools),
+        new ActionRowBuilder<TextInputBuilder>().addComponents(ingame),
+        new ActionRowBuilder<TextInputBuilder>().addComponents(best)
+    );
 
     await interaction.showModal(modal);
 }
 
-module.exports = {
-    showBuilderModal
-};
+export { showBuilderModal }

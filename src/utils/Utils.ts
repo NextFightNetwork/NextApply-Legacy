@@ -13,6 +13,4 @@ function createID(length, onlyUpperCase) {
     return result;
 }
 
-module.exports = {
-    createID
-};
+export { createID };

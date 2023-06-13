@@ -1,13 +1,8 @@
-const {EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder,
-    StringSelectMenuBuilder,
-    StringSelectMenuOptionBuilder
-} = require("discord.js");
-const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-const axios = require('axios');
+import { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } from 'discord.js';
+import axios from 'axios';
 
 const contentChannel = "1117847277449511053";
-
-const { createID } = require('../../utils/utils.js');
+import { createID } from '../../utils/Utils';
 
 async function onContentModal(interaction, client) {
     if (!interaction.isModalSubmit()) return;
@@ -36,13 +31,9 @@ async function onContentModal(interaction, client) {
             await sendError(interaction, `The account **${ingame}** does not exist!`);
         }
     } else {
-        await sendSuccess(interaction, age, twitch, client);
+        await sendSuccess(interaction, age, twitch, client, null);
     }
-
-    //sendSuccess(interaction);
-
 }
-
 
 async function sendError(interaction, message) {
     await interaction.reply({ embeds: [new EmbedBuilder()
@@ -100,8 +91,6 @@ function sendApplicationToChannel(interaction, age, twitch, ingame, id, client, 
 }
 
 function sendEmbed(channel, interaction, age, twitch, ingame, id, client, interactionUser) {
-
-
     let name = ingame;
     let image = `https://mineskin.eu/helm/${ingame}`;
     if(!ingame) {
@@ -145,6 +134,4 @@ function sendEmbed(channel, interaction, age, twitch, ingame, id, client, intera
     channel.send({ components: [row],  embeds: [embed]});
 }
 
-module.exports = {
-    onContentModal
-};
+export { onContentModal }

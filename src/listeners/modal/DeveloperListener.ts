@@ -1,4 +1,4 @@
-const {EmbedBuilder} = require("discord.js");
+import { EmbedBuilder } from 'discord.js';
 
 async function onDesignerModal(interaction) {
     if (!interaction.isModalSubmit()) return;
@@ -6,6 +6,4 @@ async function onDesignerModal(interaction) {
 
 }
 
-module.exports = {
-    onDesignerModal
-};
+export { onDesignerModal }

@@ -1,4 +1,4 @@
-const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
+import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } from 'discord.js';
 
 async function showContentModal(interaction) {
     const modal = new ModalBuilder()
@@ -27,11 +27,13 @@ async function showContentModal(interaction) {
         .setRequired(false)
         .setStyle(TextInputStyle.Short);
 
-    modal.addComponents(new ActionRowBuilder().addComponents(age), new ActionRowBuilder().addComponents(link), new ActionRowBuilder().addComponents(ingame));
+    modal.addComponents(
+        new ActionRowBuilder<TextInputBuilder>().addComponents(age),
+        new ActionRowBuilder<TextInputBuilder>().addComponents(link),
+        new ActionRowBuilder<TextInputBuilder>().addComponents(ingame)
+    );
 
     await interaction.showModal(modal);
 }
 
-module.exports = {
-    showContentModal
-};
+export { showContentModal }

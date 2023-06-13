@@ -1,16 +1,16 @@
-const { EmbedBuilder, Client, Events, ModalBuilder, TextInputBuilder, TextInputStyle, GatewayIntentBits, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder } = require('discord.js');
-const config = require('../config.json');
+import { EmbedBuilder, Client, Events, ModalBuilder, TextInputBuilder, TextInputStyle, GatewayIntentBits, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder } from 'discord.js';
+import config from '../config.json';
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 //Modals
-const { showContentModal } = require('./modals/contentModal');
-const { showBuilderModal } = require('./modals/builderModal');
-const { showDesignerModal } = require('./modals/designerModal');
-const { showDeveloperModal } = require('./modals/developerModal');
+import { showContentModal } from './modals/ContentModal';
+import { showBuilderModal } from './modals/BuilderModal';
+import { showDesignerModal } from './modals/DesignerModal';
+import { showDeveloperModal } from './modals/DeveloperModal';
 
 //Listeners
-const { onContentModal } = require('./listeners/modal/content');
+import { onContentModal } from './listeners/modal/ContentListener';
 
 client.once(Events.ClientReady, c => {
     console.log(`Logged in as ${c.user.tag}`);
