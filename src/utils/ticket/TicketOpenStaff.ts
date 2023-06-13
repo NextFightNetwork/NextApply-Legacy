@@ -1,6 +1,6 @@
-import {TextChannel, Client, EmbedBuilder,  Embed, ChannelType, Channel, User} from 'discord.js';
+import {TextChannel, Client, EmbedBuilder, Embed, ChannelType, Channel, Interaction, User, CacheType} from 'discord.js';
 
-async function openTicketStaff(staff: User, user: User, type: string, client: Client, channelName: string) {
+function openTicketStaff(staff: User, user: User, type: string, client: Client, channelName: string, interact) {
     const guild = client.guilds.cache.get('1051758423211003951');
     if (!guild) return;
 
@@ -36,14 +36,32 @@ async function openTicketStaff(staff: User, user: User, type: string, client: Cl
                 //TODO add buttons (close & claim)
                 channel.send("Ticket created by <@"+staff.id+"> for the applicant <@"+user.id+">");
                 channel.send({ embeds: [getEmbed(staff, user, type, client)] });
-                return channel.id;
+                interact.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setColor(0x7ACB0C)
+                            .setTitle('Success!')
+                            .setDescription("Created ticket: <#" + channel.id + ">")
+                            .setTimestamp()
+                    ],
+                    ephemeral: true
+                });
             }
         })
         .catch((error) => {
             console.error('Error creating ticket channel:', error);
-            return null;
+            interact.reply({
+                embeds: [
+                    new EmbedBuilder()
+                        .setColor(0xFFFE00)
+                        .setTitle('Warning!')
+                        .setDescription("Something went wrong...")
+                        .setTimestamp()
+                ],
+                ephemeral: true
+            });
         });
-    return null;
+
 }
 
 function getEmbed(staff: User, user: User, type: string, client: Client) {

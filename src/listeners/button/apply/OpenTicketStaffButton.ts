@@ -25,10 +25,6 @@ async function onClickOpenTicketStaff(interaction, client) {
                     .setTimestamp()], ephemeral: true });
             return;
         }
-
-        //TODO parse user from userID
-        //then execute this code
-
         const user = await client.users.fetch(title);
 
         if(!user) {
@@ -39,32 +35,7 @@ async function onClickOpenTicketStaff(interaction, client) {
                     .setTimestamp()], ephemeral: true });
             return;
         }
-
-        const channelID = await openTicketStaff(staff, user, "content", client, user.username + "-" + createID(4, true).toLowerCase());
-        if (channelID) {
-            interaction.reply({
-                embeds: [
-                    new EmbedBuilder()
-                        .setColor(0x7ACB0C)
-                        .setTitle('Success!')
-                        .setDescription("Created ticket: <#" + channelID + ">")
-                        .setTimestamp()
-                ],
-                ephemeral: true
-            });
-        } else {
-            interaction.reply({
-                embeds: [
-                    new EmbedBuilder()
-                        .setColor(0xFFFE00)
-                        .setTitle('Warning!')
-                        .setDescription("Something went wrong... The returned channel ID of the ticket is undefined")
-                        .setTimestamp()
-                ],
-                ephemeral: true
-            });
-        }
-
+        openTicketStaff(staff, user, "content", client, user.username + "-" + createID(4, true).toLowerCase(), interaction);
     }
 }
 
