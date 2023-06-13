@@ -14,7 +14,7 @@ import { onContentModal } from './listeners/modal/ContentListener';
 
 //Button Listeners
 import { onClickOpenTicketStaff } from './listeners/button/apply/OpenTicketStaffButton';
-
+import { onClickCloseTicket } from './listeners/button/ticket/CloseTicket';
 client.once(Events.ClientReady, c => {
     console.log(`Logged in as ${c.user.tag}`);
     //client.channels.fetch('1117475844231798917').then(channel => sendEmbed(channel));
@@ -81,10 +81,10 @@ client.on(Events.InteractionCreate, interaction => {
 
 client.on(Events.InteractionCreate, async interaction => {
     onContentModal(interaction, client);
-});
-client.on(Events.InteractionCreate, async interaction => {
     onClickOpenTicketStaff(interaction, client);
+    onClickCloseTicket(interaction, client);
 });
+
 
 
 client.login(config.token);

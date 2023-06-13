@@ -1,4 +1,4 @@
-import {TextChannel, Client, EmbedBuilder, Embed, ChannelType, Channel, Interaction, User, CacheType} from 'discord.js';
+import {TextChannel, Client, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, ChannelType, User} from 'discord.js';
 
 function openTicketStaff(staff: User, user: User, type: string, client: Client, channelName: string, interact) {
     const guild = client.guilds.cache.get('1051758423211003951');
@@ -33,9 +33,22 @@ function openTicketStaff(staff: User, user: User, type: string, client: Client, 
         .then((channel) => {
 
             if (channel instanceof TextChannel) {
-                //TODO add buttons (close & claim)
+
+                const close = new ButtonBuilder()
+                    .setCustomId('close_ticket')
+                    .setLabel('Close')
+                    .setStyle(ButtonStyle.Danger);
+                const claim = new ButtonBuilder()
+                    .setCustomId('claim_ticket_staff')
+                    .setLabel('Claim')
+                    .setStyle(ButtonStyle.Success);
+
+                const row = new ActionRowBuilder()
+                    .addComponents(close, claim);
+
                 channel.send("Ticket created by <@"+staff.id+"> for the applicant <@"+user.id+">");
-                channel.send({ embeds: [getEmbed(staff, user, type, client)] });
+                // @ts-ignore
+                channel.send({ components: [row],  embeds: [getEmbed(staff, user, type, client)]});
                 interact.reply({
                     embeds: [
                         new EmbedBuilder()
@@ -73,6 +86,7 @@ function getEmbed(staff: User, user: User, type: string, client: Client) {
                 .setTitle('Application Ticket!')
                 .setDescription("This ticket is about the content application of " + user.username)
                 .setTimestamp()
+
             break;
         }
         default: {
