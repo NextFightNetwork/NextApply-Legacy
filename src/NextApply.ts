@@ -1,4 +1,4 @@
-import { EmbedBuilder, Client, Events, ModalBuilder, TextInputBuilder, TextInputStyle, GatewayIntentBits, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder } from 'discord.js';
+import { EmbedBuilder, Client, Events, ActivityType, ModalBuilder, TextInputBuilder, TextInputStyle, GatewayIntentBits, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder } from 'discord.js';
 import config from '../config.json';
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -17,6 +17,10 @@ import { onClickOpenTicketStaff } from './listeners/button/apply/OpenTicketStaff
 import { onClickCloseTicket } from './listeners/button/ticket/CloseTicket';
 client.once(Events.ClientReady, c => {
     console.log(`Logged in as ${c.user.tag}`);
+    client.user.setPresence({
+        activities: [{ name: `your applications`, type: ActivityType.Watching }],
+        status: 'dnd',
+    });
     //client.channels.fetch('1117475844231798917').then(channel => sendEmbed(channel));
 });
 
