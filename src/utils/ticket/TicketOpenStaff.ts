@@ -39,7 +39,7 @@ function openTicketStaff(staff: User, user: User, type: string, client: Client, 
                     .setLabel('Close')
                     .setStyle(ButtonStyle.Danger);
                 const claim = new ButtonBuilder()
-                    .setCustomId('claim_ticket_staff')
+                    .setCustomId('claim_ticket')
                     .setLabel('Claim')
                     .setStyle(ButtonStyle.Success);
 

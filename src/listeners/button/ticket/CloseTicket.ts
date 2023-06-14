@@ -9,7 +9,7 @@ async function onClickCloseTicket(interaction, client) {
         client.channels.fetch("1117847277449511053").then(channel => {
             const embed = new EmbedBuilder()
                 .setColor(0xcb380c)
-                .setTitle("Deleted #" + interaction.channel.name)
+                .setTitle("Closed ticket #" + interaction.channel.name)
                 .setDescription(`By ` + user.displayName)
                 .setTimestamp()
             channel.send({ embeds: [embed]});
