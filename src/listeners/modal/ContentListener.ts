@@ -113,18 +113,22 @@ function sendEmbed(channel, interaction, age, twitch, ingame, id, client, intera
     const decline = new ButtonBuilder()
         .setCustomId('decline_content_request')
         .setLabel('Decline')
+        .setEmoji("1118595594668220457")
         .setStyle(ButtonStyle.Danger);
     const accept_content = new ButtonBuilder()
         .setCustomId('accept_content')
         .setLabel('Accept Content')
+        .setEmoji("1118594408443547688")
         .setStyle(ButtonStyle.Success);
     const accept_content_plus = new ButtonBuilder()
         .setCustomId('accept_content_plus')
         .setLabel('Accept Content+')
+        .setEmoji("1118594405809541140")
         .setStyle(ButtonStyle.Success);
     const open_ticket = new ButtonBuilder()
         .setCustomId('content_ticket_open_staff')
         .setLabel('Open ticket')
+        .setEmoji("1118594918080852079")
         .setStyle(ButtonStyle.Primary);
 
     const row = new ActionRowBuilder()

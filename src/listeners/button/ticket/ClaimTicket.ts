@@ -7,7 +7,6 @@ async function onClickClaimTicket(interaction, client) {
     const user = await interaction.guild.members.fetch(interaction.user.id);
 
     if (interaction.customId === 'claim_ticket') {
-        //TODO check if user is staff
         client.channels.fetch("1117847277449511053").then(channel => {
             const embed = new EmbedBuilder()
                 .setColor(0x00C1FF)
@@ -19,6 +18,13 @@ async function onClickClaimTicket(interaction, client) {
         interaction.channel.permissionOverwrites.edit("1095773070414844076", { ViewChannel: false }); //team role
         interaction.channel.permissionOverwrites.edit("1106641978218782792", { ViewChannel: false }); //mod role
         interaction.channel.permissionOverwrites.edit(user.id, { ViewChannel: true });
+        await interaction.reply({ embeds: [new EmbedBuilder()
+                .setColor(0x7ACB0C)
+                .setTitle('Success!')
+                .setDescription('You claimed the ticket!')
+                .setTimestamp()], ephemeral: true });
+
+        await interaction.deferUpdate();
     }
 }
 
