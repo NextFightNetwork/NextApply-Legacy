@@ -21,13 +21,16 @@ async function onContentModal(interaction, client) {
         await sendError(interaction, "You must be at least 13 years old!");
         return;
     }
+    if(age > 100) {
+        await sendError(interaction, "This is not the ALTERSHEIM!");
+        return;
+    }
 
     if (ingame) {
         try {
             const apiResponse = await axios.get(`https://api.mojang.com/users/profiles/minecraft/${ingame}`);
             await sendSuccess(interaction, age, twitch, client, ingame);
         } catch (error) {
-            //await sendSuccess(interaction, age, twitch, client);
             await sendError(interaction, `The account **${ingame}** does not exist!`);
         }
     } else {

@@ -16,6 +16,7 @@ import { onContentModal } from './listeners/modal/ContentListener';
 import { onClickOpenTicketStaff } from './listeners/button/apply/OpenTicketStaffButton';
 import { onClickCloseTicket } from './listeners/button/ticket/CloseTicket';
 import { onClickClaimTicket } from './listeners/button/ticket/ClaimTicket';
+import { onClickDeclineContent } from './listeners/button/apply/DeclineContent';
 client.once(Events.ClientReady, c => {
     console.log(`Logged in as ${c.user.tag}`);
     client.user.setPresence({
@@ -83,12 +84,12 @@ client.on(Events.InteractionCreate, interaction => {
     }
 });
 
-
 client.on(Events.InteractionCreate, async interaction => {
     onContentModal(interaction, client);
     onClickOpenTicketStaff(interaction, client);
     onClickCloseTicket(interaction, client);
     onClickClaimTicket(interaction, client);
+    onClickDeclineContent(interaction, client);
 });
 
 

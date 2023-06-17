@@ -7,6 +7,7 @@ async function onClickClaimTicket(interaction, client) {
     const user = await interaction.guild.members.fetch(interaction.user.id);
 
     if (interaction.customId === 'claim_ticket') {
+        await interaction.update({ disabled: true });
         client.channels.fetch("1117847277449511053").then(channel => {
             const embed = new EmbedBuilder()
                 .setColor(0x00C1FF)
@@ -23,8 +24,6 @@ async function onClickClaimTicket(interaction, client) {
                 .setTitle('Success!')
                 .setDescription('You claimed the ticket!')
                 .setTimestamp()], ephemeral: true });
-
-        await interaction.deferUpdate();
     }
 }
 

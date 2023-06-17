@@ -38,6 +38,4 @@ async function showDesignerModal(interaction) {
     await interaction.showModal(modal);
 }
 
-
-
 export { showDesignerModal }
