@@ -1,4 +1,5 @@
 import {TextChannel, Client, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, ChannelType, User} from 'discord.js';
+import config from '../../config.json';
 
 function openTicketStaff(staff: User, user: User, type: string, client: Client, channelName: string, interact) {
 	const guild = client.guilds.cache.get('1051758423211003951');
@@ -18,11 +19,8 @@ function openTicketStaff(staff: User, user: User, type: string, client: Client, 
 			id: staff.id,
 			allow: ["ViewChannel"],
 		},{
-			id: "1095773070414844076", // Team role ID
+			id: config.team_role_id,
 			allow: ["ViewChannel"],
-		},{
-			id: "1106641978218782792", // Mod role ID
-			allow: ["ViewChannel"]
 		}]
 	}).then((channel) => {
 

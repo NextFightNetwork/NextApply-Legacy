@@ -18,6 +18,8 @@ import { onClickCloseTicket } from './listeners/button/ticket/CloseTicket';
 import { onClickClaimTicket } from './listeners/button/ticket/ClaimTicket';
 import { onClickDeclineContent } from './listeners/button/apply/DeclineContent';
 import { onClickOpenTicketUser } from "./listeners/button/apply/OpenTicketUserButton";
+
+
 client.once(Events.ClientReady, c => {
 	console.log(`Logged in as ${c.user.tag}`);
 	client.user.setPresence({
