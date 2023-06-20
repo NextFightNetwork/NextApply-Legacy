@@ -2,9 +2,9 @@
   "name": "nextapply",
   "version": "1.0.0",
   "description": "",
-  "main": "src/NextApply.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
