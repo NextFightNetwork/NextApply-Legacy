@@ -1,6 +1,10 @@
-import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } from 'discord.js';
+import {ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, EmbedBuilder} from 'discord.js';
 
 async function showBuilderModal(interaction) {
+
+    disable(interaction);
+    return;
+
     const modal = new ModalBuilder()
         .setCustomId('builder_modal')
         .setTitle('Builder');
@@ -44,6 +48,14 @@ async function showBuilderModal(interaction) {
     );
 
     await interaction.showModal(modal);
+}
+async function disable(interaction) {
+    await interaction.reply({ embeds: [new EmbedBuilder()
+            .setColor(0xFF1A00)
+            .setTitle('Sorry!')
+            .setDescription('Currently you cannot apply for this role!')
+            .setTimestamp()
+        ], ephemeral: true });
 }
 
 export { showBuilderModal }

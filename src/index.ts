@@ -17,13 +17,14 @@ import { onClickOpenTicketStaff } from './listeners/button/apply/OpenTicketStaff
 import { onClickCloseTicket } from './listeners/button/ticket/CloseTicket';
 import { onClickClaimTicket } from './listeners/button/ticket/ClaimTicket';
 import { onClickDeclineContent } from './listeners/button/apply/DeclineContent';
+import { onClickOpenTicketUser } from "./listeners/button/apply/OpenTicketUserButton";
 client.once(Events.ClientReady, c => {
 	console.log(`Logged in as ${c.user.tag}`);
 	client.user.setPresence({
 		activities: [{ name: `your applications`, type: ActivityType.Watching }],
 		status: 'dnd',
 	});
-	client.channels.fetch(config.channel_id).then(channel => sendEmbed(channel));
+	//client.channels.fetch(config.channel_id).then(channel => sendEmbed(channel));
 });
 
 function sendEmbed(channel) {
@@ -87,6 +88,7 @@ client.on(Events.InteractionCreate, interaction => {
 client.on(Events.InteractionCreate, async interaction => {
 	onContentModal(interaction, client);
 	onClickOpenTicketStaff(interaction, client);
+	onClickOpenTicketUser(interaction, client);
 	onClickCloseTicket(interaction, client);
 	onClickClaimTicket(interaction, client);
 	onClickDeclineContent(interaction, client);

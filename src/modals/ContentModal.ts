@@ -1,6 +1,7 @@
-import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } from 'discord.js';
+import {ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, EmbedBuilder} from 'discord.js';
 
 async function showContentModal(interaction) {
+
     const modal = new ModalBuilder()
         .setCustomId('content_modal')
         .setTitle('Content');
@@ -35,5 +36,7 @@ async function showContentModal(interaction) {
 
     await interaction.showModal(modal);
 }
+
+
 
 export { showContentModal }

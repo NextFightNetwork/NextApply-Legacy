@@ -1,6 +1,9 @@
-import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } from 'discord.js';
+import {ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, EmbedBuilder} from 'discord.js';
 
 async function showDeveloperModal(interaction) {
+    disable(interaction);
+    return;
+
     const modal = new ModalBuilder()
         .setCustomId('developer_modal')
         .setTitle('Developer');
@@ -51,6 +54,14 @@ async function showDeveloperModal(interaction) {
     // @ts-ignore
     modal.addComponents(new ActionRowBuilder().addComponents(age), new ActionRowBuilder().addComponents(github), new ActionRowBuilder().addComponents(ingame), new ActionRowBuilder().addComponents(links), new ActionRowBuilder().addComponents(languages));
     await interaction.showModal(modal);
+}
+async function disable(interaction) {
+    await interaction.reply({ embeds: [new EmbedBuilder()
+            .setColor(0xFF1A00)
+            .setTitle('Sorry!')
+            .setDescription('Currently you cannot apply for this role!')
+            .setTimestamp()
+        ], ephemeral: true });
 }
 
 
