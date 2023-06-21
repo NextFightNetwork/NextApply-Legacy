@@ -1,6 +1,8 @@
 import { openTicketStaff } from '../../../utils/ticket/TicketOpenStaff';
 import { createID } from '../../../utils/Utils';
-import {Channel, EmbedBuilder} from "discord.js";
+import { Channel, EmbedBuilder} from "discord.js";
+import { addRole, removeRole, userHasActiveTickets } from '../../../utils/Utils';
+import config from '../../../config.json';
 
 async function onClickCloseTicket(interaction, client) {
     if (!interaction.isButton()) return;
@@ -14,6 +16,9 @@ async function onClickCloseTicket(interaction, client) {
                 .setTimestamp()
             channel.send({ embeds: [embed]});
         });
+				if(interaction.channel.topic) {
+					removeRole(client, config.ticket_role_id, interaction.channel.topic);
+				}
         interaction.channel.delete();
     }
 }

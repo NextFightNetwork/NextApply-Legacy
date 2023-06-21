@@ -1,6 +1,8 @@
 import {ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, EmbedBuilder} from 'discord.js';
+import config from "../config.json";
 
 async function showContentModal(interaction) {
+
 
     const modal = new ModalBuilder()
         .setCustomId('content_modal')

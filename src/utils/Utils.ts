@@ -1,3 +1,5 @@
+import config from "../config.json";
+
 function createID(length, onlyUpperCase) {
 	let result = '';
 	let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -13,4 +15,24 @@ function createID(length, onlyUpperCase) {
 	return result;
 }
 
-export { createID };
+async function addRole(client, roleID, userID) {
+	const guild = client.guilds.cache.get(config.guild_id);
+	const role = guild.roles.cache.get(roleID);
+	const member = guild.members.cache.get(userID);
+	await member.roles.add(role);
+}
+
+async function removeRole(client, roleID, userID) {
+	const guild = client.guilds.cache.get(config.guild_id);
+	const role = guild.roles.cache.get(roleID);
+	const member = guild.members.cache.get(userID);
+	await member.roles.remove(role);
+}
+
+function userHasActiveTickets(interaction) {
+	return !!interaction.member.roles.cache.has(config.ticket_role_id);
+}
+
+
+
+export { createID, addRole, removeRole, userHasActiveTickets };
