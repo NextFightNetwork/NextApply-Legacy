@@ -7,12 +7,13 @@ Join the [Discord](https://discord.gg/ZXvGT8uMD3) server and apply for the devel
 If you get accepted you can contribute to this project LOL
 
 Example `src\config.json`
+
 ```json
 {
 	"application_name": "NextFight Application",
 	"token": "YOUR_TOKEN",
 	"team_role_id": "1095773070414844076",
-	"channel_id": "1117475844231798917"
+	"application_message_channel_id": "1117475844231798917"
 }
 ```
 
