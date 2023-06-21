@@ -13,7 +13,11 @@ Example `src\config.json`
 	"application_name": "NextFight Application",
 	"token": "YOUR_TOKEN",
 	"team_role_id": "1095773070414844076",
-	"application_message_channel_id": "1117475844231798917"
+	"content_role_id": "1082011747738722384",
+	"content_plus_role_id": "1101927404747898971",
+	"application_message_channel_id": "1117475844231798917",
+	"guild_id": "1051758423211003951",
+	"send_application_message_on_start": false
 }
 ```
 
