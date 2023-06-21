@@ -1,7 +1,7 @@
 import {TextChannel, Client, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, ChannelType, User} from 'discord.js';
 import config from '../../config.json';
 
-function openTicketUser(user: User, type: string, client: Client, channelName: string, interact) {
+function openTicketUser(user: User, type: string, client: Client, channelName: string, interaction) {
     const guild = client.guilds.cache.get('1051758423211003951');
     if (!guild) return;
 
@@ -42,7 +42,8 @@ function openTicketUser(user: User, type: string, client: Client, channelName: s
                 channel.send("Ticket created by <@"+user.id+">");
                 // @ts-ignore
                 channel.send({ components: [row],  embeds: [getEmbed(user, type, client)]});
-                interact.reply({
+							  interaction.message.delete();
+                interaction.reply({
                     embeds: [
                         new EmbedBuilder()
                             .setColor(0x7ACB0C)
@@ -56,7 +57,7 @@ function openTicketUser(user: User, type: string, client: Client, channelName: s
         })
         .catch((error) => {
             console.error('Error creating ticket channel:', error);
-            interact.reply({
+            interaction.reply({
                 embeds: [
                     new EmbedBuilder()
                         .setColor(0xFFFE00)
