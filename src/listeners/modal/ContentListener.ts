@@ -22,9 +22,14 @@ async function onContentModal(interaction, client) {
         return;
     }
     if(age > 100) {
-        await sendError(interaction, "This is not the ALTERSHEIM!");
+        await sendError(interaction, "Sorry you are to old!");
         return;
     }
+
+	if(age > 130) {
+		await sendError(interaction, "Please enter your real age!");
+		return;
+	}
 
     if (ingame) {
         try {
