@@ -1,7 +1,7 @@
 import { EmbedBuilder, Client, Events, ActivityType, ModalBuilder, TextInputBuilder, TextInputStyle, GatewayIntentBits, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder } from 'discord.js';
 import config from './config.json';
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
 
 //Modals
 import { showContentModal } from './modals/ContentModal';
@@ -18,6 +18,8 @@ import { onClickCloseTicket } from './listeners/button/ticket/CloseTicket';
 import { onClickClaimTicket } from './listeners/button/ticket/ClaimTicket';
 import { onClickDeclineContent } from './listeners/button/apply/DeclineContent';
 import { onClickOpenTicketUser } from "./listeners/button/apply/OpenTicketUserButton";
+import { onClickAcceptContent } from "./listeners/button/apply/AcceptContent";
+import { onClickAcceptContentPlus } from "./listeners/button/apply/AcceptContentPlus";
 
 import { sendEmbed } from './utils/embeds/ApplicationCreateEmbed';
 
@@ -57,6 +59,8 @@ client.on(Events.InteractionCreate, async interaction => {
 	onClickCloseTicket(interaction, client);
 	onClickClaimTicket(interaction, client);
 	onClickDeclineContent(interaction, client);
+	onClickAcceptContent(interaction, client);
+	onClickAcceptContentPlus(interaction, client);
 });
 
 client.login(config.token);
