@@ -4,7 +4,7 @@
 This bot is still in progress and may not be used yet for private servers
 
 Join the [Discord](https://discord.gg/ZXvGT8uMD3) server and apply for the developer role using this system.
-If you get accepted you can contribute to this project LOL
+If you get accepted you can contribute to this project
 
 Example `src\config.json`
 
