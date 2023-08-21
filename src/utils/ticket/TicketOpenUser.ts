@@ -3,19 +3,7 @@ import config from '../../config.json';
 import { addRole, removeRole, userHasActiveTickets } from '../../utils/Utils';
 
 function openTicketUser(user: User, type: string, client: Client, channelName: string, interaction) {
-	if(userHasActiveTickets(interaction)) {
-		interaction.reply({
-			embeds: [
-				new EmbedBuilder()
-					.setColor(0xFF1A00)
-					.setTitle('Failed!')
-					.setDescription("You have an active ticket!")
-					.setTimestamp()
-			],
-			ephemeral: true
-		});
-		return;
-	}
+
 	const guild = client.guilds.cache.get('1051758423211003951');
 
 	if (!guild) return;
@@ -87,20 +75,11 @@ function openTicketUser(user: User, type: string, client: Client, channelName: s
 
 function getEmbed(user: User, type: string, client: Client) {
 	let embed;
-	switch (type) {
-		case "content": {
-			embed = new EmbedBuilder()
-				.setColor(0xEB8922)
-				.setTitle('Application Ticket!')
-				.setDescription("This ticket is about the content application of " + user.username)
-				.setTimestamp()
-
-			break;
-		}
-		default: {
-
-		}
-	}
+	embed = new EmbedBuilder()
+		.setColor(0xEB8922)
+		.setTitle('Application Ticket!')
+		.setDescription("This ticket is about the "+type+" application of " + user.username)
+		.setTimestamp()
 	return embed;
 }
 

@@ -61,7 +61,7 @@ async function sendSuccess(interaction, age, twitch, client, ingame) {
         image = `https://minotar.net/helm/${ingame}.png`;
     }
     const ticketButton = new ButtonBuilder()
-        .setCustomId('content_ticket_open_user')
+        .setCustomId('ticket_open_user')
         .setLabel('Open ticket')
         .setStyle(ButtonStyle.Primary);
 
@@ -134,7 +134,7 @@ function sendEmbed(channel, interaction, age, twitch, ingame, id, client, intera
         .setEmoji("1118594405809541140")
         .setStyle(ButtonStyle.Success);
     const open_ticket = new ButtonBuilder()
-        .setCustomId('content_ticket_open_staff')
+        .setCustomId('ticket_open_staff')
         .setLabel('Open ticket')
         .setEmoji("1118594918080852079")
         .setStyle(ButtonStyle.Primary);

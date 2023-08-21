@@ -1,6 +1,6 @@
 import { EmbedBuilder } from 'discord.js';
 
-async function onDesignerModal(interaction) {
+async function onBuilderModal(interaction, client) {
     if (!interaction.isModalSubmit()) return;
     if (interaction.customId !== 'builder_modal') return
 
@@ -8,4 +8,4 @@ async function onDesignerModal(interaction) {
 
 }
 
-export { onDesignerModal }
+export { onBuilderModal }

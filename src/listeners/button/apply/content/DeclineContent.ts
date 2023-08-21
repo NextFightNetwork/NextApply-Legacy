@@ -1,5 +1,5 @@
-import { openTicketStaff } from '../../../utils/ticket/TicketOpenStaff';
-import { createID } from '../../../utils/Utils';
+import { openTicketStaff } from '../../../../utils/ticket/TicketOpenStaff';
+import { createID } from '../../../../utils/Utils';
 import {Channel, Embed, EmbedBuilder} from "discord.js";
 
 async function onClickDeclineContent(interaction, client) {

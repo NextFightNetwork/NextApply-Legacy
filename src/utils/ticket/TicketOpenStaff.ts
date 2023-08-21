@@ -49,7 +49,7 @@ function openTicketStaff(staff: User, user: User, type: string, client: Client, 
 						.setDescription("Created ticket: <#" + channel.id + ">")
 						.setTimestamp()
 				],
-				ephemeral: true
+				ephemeral: false
 			});
 		}
 	}).catch((error) => {
@@ -70,19 +70,11 @@ function openTicketStaff(staff: User, user: User, type: string, client: Client, 
 
 function getEmbed(staff: User, user: User, type: string, client: Client) {
 	let embed;
-	switch (type) {
-		case "content": {
-			embed = new EmbedBuilder()
-				.setColor(0xEB8922)
-				.setTitle('Application Ticket!')
-				.setDescription("This ticket is about the content application of " + user.username)
-				.setTimestamp()
-			break;
-		}
-		default: {
-
-		}
-	}
+	embed = new EmbedBuilder()
+		.setColor(0xEB8922)
+		.setTitle('Application Ticket!')
+		.setDescription("This ticket is about the "+type+" application of " + user.username)
+		.setTimestamp()
 	return embed;
 }
 

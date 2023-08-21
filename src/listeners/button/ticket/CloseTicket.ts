@@ -14,7 +14,7 @@ async function onClickCloseTicket(interaction, client) {
                 .setTitle("Closed ticket #" + interaction.channel.name)
                 .setDescription(`By ` + user.displayName)
                 .setTimestamp()
-            channel.send({ embeds: [embed]});
+            //channel.send({ embeds: [embed]});
         });
 				if(interaction.channel.topic) {
 					removeRole(client, config.ticket_role_id, interaction.channel.topic);

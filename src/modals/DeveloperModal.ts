@@ -1,8 +1,8 @@
 import {ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, EmbedBuilder} from 'discord.js';
 
 async function showDeveloperModal(interaction) {
-    disable(interaction);
-    return;
+    //disable(interaction);
+    //return;
 
     const modal = new ModalBuilder()
         .setCustomId('developer_modal')
@@ -14,40 +14,38 @@ async function showDeveloperModal(interaction) {
         .setMaxLength(3)
         .setLabel("How old are you?")
         .setRequired(true)
-        .setPlaceholder("14+")
+        .setPlaceholder("13+")
         .setStyle(TextInputStyle.Short);
 
     const github = new TextInputBuilder()
         .setCustomId('github')
         .setLabel("Github or Gitlab")
+				.setMaxLength(300)
         .setRequired(false)
-        .setPlaceholder("Your Github or Gitlab name/link")
+        .setPlaceholder("Your Github or Gitlab username/link")
         .setStyle(TextInputStyle.Short);
 
     const ingame = new TextInputBuilder()
         .setCustomId('ingame')
         .setLabel("Minecraft name")
         .setMaxLength(16)
-        .setMinLength(3)
         .setRequired(false)
         .setStyle(TextInputStyle.Short);
 
     const links = new TextInputBuilder()
         .setCustomId('links')
-        .setLabel("Showcase projects")
-        .setMaxLength(16)
-        .setMinLength(3)
+        .setLabel("Showcase")
+			  .setMaxLength(300)
         .setRequired(false)
-        .setPlaceholder("For example Github or SpigotMC link if you have")
+        .setPlaceholder("For example a link to your portfolio or SpigotMC page")
         .setStyle(TextInputStyle.Short);
 
     const languages = new TextInputBuilder()
         .setCustomId('languages')
-        .setLabel("Which programming languages do you know?")
-        .setMaxLength(16)
-        .setMinLength(3)
-        .setRequired(false)
-        .setPlaceholder("Java, TypeScript, JavaScript, Rust...")
+        .setLabel("Programming languages you know the best:")
+        .setRequired(true)
+				.setMaxLength(100)
+        .setPlaceholder("Java, TypeScript, Rust...")
         .setStyle(TextInputStyle.Short);
 
 

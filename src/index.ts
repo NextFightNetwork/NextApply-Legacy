@@ -12,27 +12,30 @@ import { showDeveloperModal } from './modals/DeveloperModal';
 
 //Listeners
 import { onContentModal } from './listeners/modal/ContentListener';
+import { onDeveloperModal } from './listeners/modal/DeveloperListener';
+import { onBuilderModal } from './listeners/modal/BuilderListener';
+import { onDesignerModal } from './listeners/modal/DesignerListener';
 
 //Button Listeners
 import { onClickOpenTicketStaff } from './listeners/button/apply/OpenTicketStaffButton';
 import { onClickCloseTicket } from './listeners/button/ticket/CloseTicket';
 import { onClickClaimTicket } from './listeners/button/ticket/ClaimTicket';
-import { onClickDeclineContent } from './listeners/button/apply/DeclineContent';
+import { onClickDeclineContent } from './listeners/button/apply/content/DeclineContent';
 import { onClickOpenTicketUser } from "./listeners/button/apply/OpenTicketUserButton";
-import { onClickAcceptContent } from "./listeners/button/apply/AcceptContent";
-import { onClickAcceptContentPlus } from "./listeners/button/apply/AcceptContentPlus";
+import { onClickAcceptContent } from "./listeners/button/apply/content/AcceptContent";
+import { onClickAcceptContentPlus } from "./listeners/button/apply/content/AcceptContentPlus";
 
 import { sendEmbed } from './utils/embeds/ApplicationCreateEmbed';
 
 client.once(Events.ClientReady, c => {
 	console.log(`Logged in as ${c.user.tag}`);
+	if(config.send_application_message_on_start) {
+		client.channels.fetch(config.application_message_channel_id).then(channel => sendEmbed(channel));
+	}
 	client.user.setPresence({
 		activities: [{ name: `your applications`, type: ActivityType.Watching }],
 		status: 'dnd',
 	});
-	if(config.send_application_message_on_start) {
-		client.channels.fetch(config.application_message_channel_id).then(channel => sendEmbed(channel));
-	}
 });
 
 client.on(Events.InteractionCreate, interaction => {
@@ -55,6 +58,9 @@ client.on(Events.InteractionCreate, interaction => {
 
 client.on(Events.InteractionCreate, async interaction => {
 	onContentModal(interaction, client);
+	onDeveloperModal(interaction, client);
+	onDesignerModal(interaction, client);
+	onBuilderModal(interaction, client);
 	onClickOpenTicketStaff(interaction, client);
 	onClickOpenTicketUser(interaction, client);
 	onClickCloseTicket(interaction, client);

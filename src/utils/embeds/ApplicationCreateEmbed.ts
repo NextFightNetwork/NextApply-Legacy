@@ -39,6 +39,7 @@ function sendEmbed(channel) {
 		.addComponents(select);
 
 	channel.send({ embeds: [embed], components: [row] });
+	console.log("Application embed was sent!")
 }
 
 export { sendEmbed }
