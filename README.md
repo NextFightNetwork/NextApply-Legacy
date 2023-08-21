@@ -24,9 +24,10 @@ Example `src\config.json`
 }
 ```
 
-
-![image](https://cdn.discordapp.com/attachments/1052241511795937381/1117774875977863178/image.png)
-![image](https://media.discordapp.net/attachments/1052241511795937381/1118186496357310494/image.png?width=657&height=670)
-![image](https://media.discordapp.net/attachments/1052241511795937381/1118186477428428870/image.png?width=857&height=458)
-
+<details>
+<summary>Spoiler images</summary>
+<img src="https://cdn.discordapp.com/attachments/1052241511795937381/1117774875977863178/image.png">
+<img src="https://media.discordapp.net/attachments/1052241511795937381/1118186496357310494/image.png?width=657&height=670">
+<img src="https://media.discordapp.net/attachments/1052241511795937381/1118186477428428870/image.png?width=857&height=458">
+</details>
 
