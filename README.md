@@ -3,7 +3,8 @@
 	<h3>NextApply is a Discord bot for the official NextFight Discord server to handle user applications for certain roles</h3>
 </div>
 
-> This bot is still in progress and may not be used yet for private servers
+> This bot is still in progress and may not be used yet for private servers!<br>
+> It is also **not** that **customizable** yet! You would need to change some code to get it working on your server.
 
 Join the [Discord](https://discord.gg/ZXvGT8uMD3) server and apply for the developer role using this system.
 If you get accepted you can contribute to this project or just open a [pull request](https://github.com/NextFightNetwork/NextApply/pulls)
