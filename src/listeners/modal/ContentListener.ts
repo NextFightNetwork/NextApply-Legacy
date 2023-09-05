@@ -142,7 +142,7 @@ function sendEmbed(channel, interaction, age, twitch, ingame, id, client, intera
     const row = new ActionRowBuilder()
         .addComponents(decline,accept_content, accept_content_plus, open_ticket);
 
-    channel.send("<@&1117885857760817162>");
+    //channel.send("<@&1117885857760817162>");
     channel.send({ components: [row],  embeds: [embed]});
 }
 

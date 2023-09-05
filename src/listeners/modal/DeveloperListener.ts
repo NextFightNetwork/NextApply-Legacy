@@ -144,7 +144,7 @@ function sendEmbed(channel, interaction, age, github, links, languages, ingame, 
 	const row = new ActionRowBuilder()
 		.addComponents(decline,accept_developer, open_ticket);
 
-	channel.send("<@&1117885857760817162>");
+	//channel.send("<@&1117885857760817162>");
 	channel.send({ components: [row],  embeds: [embed]});
 }
 

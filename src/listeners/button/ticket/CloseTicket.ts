@@ -17,7 +17,7 @@ async function onClickCloseTicket(interaction, client) {
             //channel.send({ embeds: [embed]});
         });
 				if(interaction.channel.topic) {
-					removeRole(client, config.ticket_role_id, interaction.channel.topic);
+					await removeRole(client, config.ticket_role_id, interaction.channel.topic);
 				}
         interaction.channel.delete();
     }

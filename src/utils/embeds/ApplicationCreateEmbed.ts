@@ -6,7 +6,10 @@ function sendEmbed(channel) {
 		.setColor(0xEB8922)
 		.setTitle(config.application_name)
 		.setThumbnail('https://media.discordapp.net/attachments/1052241511795937381/1117537388172943451/animapply.gif?width=625&height=625')
-		.setDescription('Please select the role you want to apply for from the dropdown menu below')
+		.setDescription('Please select the **role** you want to apply for from the **dropdown menu** below\n \n'+
+		'For more information such as the **minimum requirements** for certain roles [click here](https://github.com/NextFightNetwork/Wiki/wiki/Ranks)\n'+
+		'\n'+
+		'**If you prefer**, you can send an **email** with images or documents to `apply@nextfight.net` instead!')
 		.setTimestamp()
 
 	const select = new StringSelectMenuBuilder()
