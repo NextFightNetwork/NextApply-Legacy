@@ -53,7 +53,7 @@ async function disable(interaction) {
     await interaction.reply({ embeds: [new EmbedBuilder()
             .setColor(0xFF1A00)
             .setTitle('Sorry!')
-            .setDescription('Currently you cannot apply for this role!')
+            .setDescription('Currently you cannot apply for this role using discord!\nSent an email to `apply@nextfight.net` if you want to become a builder here.')
             .setTimestamp()
         ], ephemeral: true });
 }

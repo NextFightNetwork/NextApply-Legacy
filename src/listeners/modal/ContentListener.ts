@@ -8,38 +8,19 @@ async function onContentModal(interaction, client) {
     if (!interaction.isModalSubmit()) return;
     if (interaction.customId !== 'content_modal') return
 
-    const ageString = interaction.fields.getTextInputValue('age');
     const twitch = interaction.fields.getTextInputValue('twitch');
     const ingame = interaction.fields.getTextInputValue('ingame');
-    var age = Number(ageString);
 
-    if(!age) {
-        await sendError(interaction, `${ageString} is not a valid age!`);
-        return;
-    }
-    if(age < 13) {
-        await sendError(interaction, "You must be at least 13 years old!");
-        return;
-    }
-    if(age > 100) {
-        await sendError(interaction, "Sorry you are to old!");
-        return;
-    }
-
-	if(age > 130) {
-		await sendError(interaction, "Please enter your real age!");
-		return;
-	}
 
     if (ingame) {
         try {
             const apiResponse = await axios.get(`https://api.mojang.com/users/profiles/minecraft/${ingame}`);
-            await sendSuccess(interaction, age, twitch, client, ingame);
+            await sendSuccess(interaction, twitch, client, ingame);
         } catch (error) {
             await sendError(interaction, `The account **${ingame}** does not exist!`);
         }
     } else {
-        await sendSuccess(interaction, age, twitch, client, null);
+        await sendSuccess(interaction, twitch, client, null);
     }
 }
 
@@ -52,7 +33,7 @@ async function sendError(interaction, message) {
 }
 
 
-async function sendSuccess(interaction, age, twitch, client, ingame) {
+async function sendSuccess(interaction, twitch, client, ingame) {
     const interactionUser = await interaction.guild.members.fetch(interaction.user.id);
     let name = interactionUser.displayName;
     let image = "https://media.discordapp.net/attachments/1052241511795937381/1099990211619979354/Neues_Projekt_39.png?width=670&height=670";
@@ -91,14 +72,14 @@ async function sendSuccess(interaction, age, twitch, client, ingame) {
             ], ephemeral: true });
     }
 
-    sendApplicationToChannel(interaction, age, twitch, ingame, id, client, interactionUser);
+    sendApplicationToChannel(interaction, twitch, ingame, id, client, interactionUser);
 }
 
-function sendApplicationToChannel(interaction, age, twitch, ingame, id, client, interactionUser) {
-    client.channels.fetch(contentChannel).then(channel => sendEmbed(channel, interaction, age, twitch, ingame, id, client, interactionUser));
+function sendApplicationToChannel(interaction, twitch, ingame, id, client, interactionUser) {
+    client.channels.fetch(contentChannel).then(channel => sendEmbed(channel, interaction, twitch, ingame, id, client, interactionUser));
 }
 
-function sendEmbed(channel, interaction, age, twitch, ingame, id, client, interactionUser) {
+function sendEmbed(channel, interaction, twitch, ingame, id, client, interactionUser) {
     let name = ingame;
     let image = `https://mineskin.eu/helm/${ingame}`;
     if(!ingame) {
@@ -112,7 +93,6 @@ function sendEmbed(channel, interaction, age, twitch, ingame, id, client, intera
         .setThumbnail(image)
         .setDescription(`Created by <@${interactionUser.id}>`)
         .addFields({ name: 'Minecraft name', value: name, inline: true },
-            { name: 'Age', value: age.toString(), inline: true },
             { name: 'Social media', value: twitch, inline: true },
             { name: `ID \`#${id}\``, value: ` `, inline: false })
         .setTimestamp()
@@ -142,7 +122,7 @@ function sendEmbed(channel, interaction, age, twitch, ingame, id, client, intera
     const row = new ActionRowBuilder()
         .addComponents(decline,accept_content, accept_content_plus, open_ticket);
 
-    //channel.send("<@&1117885857760817162>");
+    channel.send("<@&1117885857760817162>");
     channel.send({ components: [row],  embeds: [embed]});
 }
 

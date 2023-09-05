@@ -31,7 +31,6 @@ async function showContentModal(interaction) {
         .setStyle(TextInputStyle.Short);
 
     modal.addComponents(
-        new ActionRowBuilder<TextInputBuilder>().addComponents(age),
         new ActionRowBuilder<TextInputBuilder>().addComponents(link),
         new ActionRowBuilder<TextInputBuilder>().addComponents(ingame)
     );
